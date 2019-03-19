@@ -1,9 +1,6 @@
 'use strict';
 
-const mongoose = require('mongoose');
-mongoose.connect('mongodb://39.96.68.144:27017/smdc_dev', {useNewUrlParser: true});
-
-const Image = mongoose.model('Image', { id: String, data: Buffer });
+const Image = require('../models/image');
 
 exports.read_image = function(req, res) {
   const imageId = req.params.imageId;

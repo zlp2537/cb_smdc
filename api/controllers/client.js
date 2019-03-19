@@ -1,7 +1,6 @@
 'use strict';
 
-// var mongoose = require('mongoose'),
-//   Task = mongoose.model('Tasks');
+const Menu = require('../models/menu');
 
 exports.menu = function(req, res) {
   //console.log("hhaha");

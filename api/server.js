@@ -1,11 +1,16 @@
-var express = require('express'),
+const express = require('express'),
   app = express(),
-  port = process.env.PORT || 3000;
+  port = process.env.PORT || 3000,
+  mongoose = require('mongoose');
+
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://39.96.68.144:27017/smdc_dev',
+  {useNewUrlParser: true});
 
 // importing routes
-var clientRoutes = require('./routes/client');
-var adminRoutes = require('./routes/admin');
-var imageRoutes = require('./routes/image');
+const clientRoutes = require('./routes/client');
+const adminRoutes = require('./routes/admin');
+const imageRoutes = require('./routes/image');
 
 // register routes
 clientRoutes(app);
