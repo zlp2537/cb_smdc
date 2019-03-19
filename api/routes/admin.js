@@ -1,14 +1,18 @@
 'use strict';
 module.exports = function(app) {
-  var client = require('../controllers/client');
+  var admin = require('../controllers/admin');
 
-  // client Routes
-  app.route('/menu/:restaurantId/:tableId')
-    .get(client.menu);
+  app.route('/admin/restaurants/:id')
+    .get(admin.read_restaurant)
+    .put(admin.update_restaurant)
+    .delete(admin.delete_restaurant);
 
+  app.route('/admin/restaurant/:restaurantId/tables/:id')
+    .get(admin.read_tables)
+    .put(admin.update_table)
+    .delete(admin.delete_table);
 
-  // app.route('/tasks/:taskId')
-  //   .get(client.read_a_task)
-  //   .put(client.update_a_task)
-  //   .delete(client.delete_a_task);
+  app.route('/admin/restaurant/:restaurantId/menu')
+    .get(admin.read_menu)
+    .put(admin.update_menu);
 };
