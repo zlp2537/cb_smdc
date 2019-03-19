@@ -2,9 +2,14 @@ var express = require('express'),
   app = express(),
   port = process.env.PORT || 3000;
 
-var routes = require('./routes/client'); //importing route
-routes(app); //register the route
+// importing routes
+var clientRoutes = require('./routes/client');
+var adminRoutes = require('./routes/admin');
+
+// register routes
+clientRoutes(app);
+adminRoutes(app);
 
 app.listen(port);
 
-console.log('todo list RESTful API server started on: ' + port);
+console.log('RESTful API server started on: ' + port);
