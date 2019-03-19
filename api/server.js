@@ -5,10 +5,12 @@ var express = require('express'),
 // importing routes
 var clientRoutes = require('./routes/client');
 var adminRoutes = require('./routes/admin');
+var imageRoutes = require('./routes/image');
 
 // register routes
 clientRoutes(app);
 adminRoutes(app);
+imageRoutes(app);
 
 app.listen(port);
 
