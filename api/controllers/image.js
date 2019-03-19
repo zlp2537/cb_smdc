@@ -6,9 +6,14 @@ mongoose.connect('mongodb://39.96.68.144:27017/smdc_dev', {useNewUrlParser: true
 const Image = mongoose.model('Image', { id: String, data: Buffer });
 
 exports.read_image = function(req, res) {
-  Image.find({id: "sxty_cszj01.png"}, function(err, img) {
-    //console.log(img[0].data);
-    res.set('Content-Type', 'image/png');
-    res.send(img[0].data);
+  const imageId = req.params.imageId;
+  console.log(imageId);
+  Image.find({id: imageId}, function(err, img) {
+    if (img.length > 0) {
+      res.set('Content-Type', 'image/' + imageId.split('.').pop());
+      res.send(img[0].data);
+    } else {
+      res.status(404).send('Sorry, we cannot find that!'); // TODO
+    }
   });
 };
