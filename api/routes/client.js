@@ -3,7 +3,7 @@ module.exports = function(app) {
   var client = require('../controllers/client');
 
   // client Routes
-  app.route('/menu/:restaurantId/:tableId')
+  app.route('/api/client/menu/:restaurantId/:tableId')
     .get(client.menu);
 
 
