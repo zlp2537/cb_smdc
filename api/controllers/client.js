@@ -11,6 +11,7 @@ exports.menu = function(req, res) {
     if (err || menu == null) {
       res.status(404).send('Sorry, we cannot find that!'); // TODO
     } else {
+      res.set('Access-Control-Allow-Origin', '*');
       res.json(menu);
     }
   });
