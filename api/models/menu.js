@@ -1,9 +1,9 @@
 'use strict';
 
 const mongoose = require('mongoose');  
-const MenuSchema = new mongoose.Schema({  
+const menuSchema = new mongoose.Schema({  
   id: String
 });
-mongoose.model('Menu', MenuSchema);
+mongoose.model('Menu', menuSchema);
 
 module.exports = mongoose.model('Menu');

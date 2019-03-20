@@ -1,17 +1,31 @@
 'use strict';
 
+const Restaurant = require('../models/restaurant');
 const Menu = require('../models/menu');
 
 exports.menu = function(req, res) {
-  //console.log("hhaha");
-  //console.log(req.params.restaurantId);
-  //console.log(req.params.tableId);
-  // Task.find({}, function(err, task) {
-  //   if (err)
-  //     res.send(err);
-  //   res.json(task);
-  // });
-  res.json({restaurantId: req.params.restaurantId, tableId: req.params.tableId});
+  const rId = req.params.restaurantId;
+  const tId = req.params.tableId;
+  console.log(rId, tId);
+
+  Restaurant.findOne({id: rId}, function(err, r) {
+    console.log(err, r);
+    if (r == null) {
+      res.status(404).send('Sorry, we cannot find that!'); // TODO
+      return;
+    };
+
+    const mId = r.menu_id;
+    console.log(mId);
+    Menu.findOne({id: mId}, function(err, menu) {
+      if (r == null) {
+        res.status(404).send('Sorry, we cannot find that!'); // TODO
+        return;
+      };
+
+      res.json(menu);
+    });
+  });
 };
 
 // exports.create_a_task = function(req, res) {
