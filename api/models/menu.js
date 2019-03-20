@@ -1,7 +1,7 @@
 'use strict';
 
-const mongoose = require('mongoose');  
-const menuSchema = new mongoose.Schema({  
+const mongoose = require('mongoose');
+const menuSchema = new mongoose.Schema({
   id: String,
   groups: [{
     id: Number,
