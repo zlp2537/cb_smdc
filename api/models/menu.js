@@ -8,8 +8,9 @@ const menuSchema = new mongoose.Schema({
     name: String
   }],
   items: [{
-    group_id: Number,
+    id: Number,
     name: String,
+    group_id: Number,
     pic_id: String,
     price: Number // in cents
   }]
