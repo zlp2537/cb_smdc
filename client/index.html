@@ -15,21 +15,25 @@
   </head>
   <body>
     <h1>Hello, world!</h1>
-    <div id="app">
+<!--     <div id="app">
       {{ message }}
       <li v-for="item in items">
         {{ item.name }}
       </li>
-    </div>
-<div class="bd-example">
+      <li v-for="group in groups">
+        {{ group.name }}
+      </li>
+    </div> -->
+<div class="bd-example" id="app">
   <div class="row">
     <div class="col-4">
       <nav id="navbar-example3" class="navbar navbar-light bg-light flex-column">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <!-- <a class="navbar-brand" href="#">Navbar</a> -->
         <nav class="nav nav-pills flex-column">
-          <a class="nav-link active" href="#item-1">Item 1</a>
-          <a class="nav-link" href="#item-2">Item 2</a>
-          <a class="nav-link" href="#item-3">Item 3</a>
+          <a v-for="group in groups" :class="group.class" :href="group.href">{{group.name}}</a>
+          <!-- <a class="nav-link active" href="#item-1">Item 1</a> -->
+          <!-- <a class="nav-link" href="#item-2">Item 2</a> -->
+          <!-- <a class="nav-link" href="#item-3">Item 3</a> -->
         </nav>
       </nav>
     </div>
@@ -43,6 +47,7 @@
         <p>Quis magna Lorem anim amet ipsum do mollit sit cillum voluptate ex nulla tempor. Laborum consequat non elit enim exercitation cillum aliqua consequat id aliqua. Esse ex consectetur mollit voluptate est in duis laboris ad sit ipsum anim Lorem. Incididunt veniam velit elit elit veniam Lorem aliqua quis ullamco deserunt sit enim elit aliqua esse irure. Laborum nisi sit est tempor laborum mollit labore officia laborum excepteur commodo non commodo dolor excepteur commodo. Ipsum fugiat ex est consectetur ipsum commodo tempor sunt in proident.</p>
         <h4 id="item-3">Item 3</h4>
         <p>Quis anim sit do amet fugiat dolor velit sit ea ea do reprehenderit culpa duis. Nostrud aliqua ipsum fugiat minim proident occaecat excepteur aliquip culpa aute tempor reprehenderit. Deserunt tempor mollit elit ex pariatur dolore velit fugiat mollit culpa irure ullamco est ex ullamco excepteur.</p>
+        <h4 id="item-4">Item 5</h4>
         <p>Deserunt quis elit Lorem eiusmod amet enim enim amet minim Lorem proident nostrud. Ea id dolore anim exercitation aute fugiat labore voluptate cillum do laboris labore. Ex velit exercitation nisi enim labore reprehenderit labore nostrud ut ut. Esse officia sunt duis aliquip ullamco tempor eiusmod deserunt irure nostrud irure. Ullamco proident veniam laboris ea consectetur magna sunt ex exercitation aliquip minim enim culpa occaecat exercitation. Est tempor excepteur aliquip laborum consequat do deserunt laborum esse eiusmod irure proident ipsum esse qui.</p>
         <p>Labore sit culpa commodo elit adipisicing sit aliquip elit proident voluptate minim mollit nostrud aute reprehenderit do. Mollit excepteur eu Lorem ipsum anim commodo sint labore Lorem in exercitation velit incididunt. Occaecat consectetur nisi in occaecat proident minim enim sunt reprehenderit exercitation cupidatat et do officia. Aliquip consequat ad labore labore mollit ut amet. Sit pariatur tempor proident in veniam culpa aliqua excepteur elit magna fugiat eiusmod amet officia.</p>
       </div>
@@ -60,13 +65,20 @@
         el: '#app',
         data: {
           message: 'Hello Vue!',
+          groups: [],
           items: []
         },
 
         mounted () {
-          $.getJSON('http://localhost:3000/api/client/menu/sxty_cszj01/t01', json => {
-            console.log(json);
-            this.items = json.items;
+          $.getJSON('http://localhost:3000/api/client/menu/sxty_cszj01/t01', menu => {
+            console.log(menu);
+            this.groups = menu.groups;
+            this.items = menu.items;
+
+            this.groups.forEach(function(group, index) {
+              group.href = "#item-" + group.id;
+              group.class = index == 0 ? "nav-link active" : "nav-link";
+            });
           })
         }
       })
