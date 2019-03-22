@@ -4,6 +4,20 @@
 
 
 
+## 技术选型
+
+* 后端
+  * API服务器：Node.js
+  * 数据库：MongoDB
+
+* 前端
+  * 移动客户端：Vuejs + Bootstrap ？
+  * 后台管理界面：
+    * Web：Vuejs + Bootstrap ？
+    * 微信小app：未来再开发
+
+
+
 ## MongoDB
 
 DB：
@@ -13,10 +27,28 @@ DB：
 
 Collections：
 
-* restaurants：记录餐馆信息
-  * id：餐馆唯一ID，按[ID编码规则](#)生成
+* images：图片暂时存放在MongoDB里（后续可以考虑放到更合适的地方）
+  * id：图片唯一ID（后面解释ID规则）
+  * data：图片二进制数据
+
+* restaurants：记录餐馆数据
+  * id：餐馆唯一ID（后面解释ID规则）
   * name：餐馆名字（中文名）
   * pic_id：餐馆图片ID
+
+* menus：记录菜单数据
+  * id：菜单唯一ID（后面解释ID规则）
+  * groups：餐馆菜品分组，比如有热菜、凉菜、主食、甜点、饮料、酒水等。
+    * id：分组ID，整数，菜单内唯一。比如热菜是1，凉菜是2，等等。
+    * name：分组名（中文）
+  * items：菜单项目
+    * id：菜的ID，整数，菜单内唯一
+    * name：菜名（中文）
+    * group_id：菜的分组ID，比如过油肉属于热菜，分组ID是1。
+    * pic_id：菜的图片ID
+    * price：菜的价格，整数，单位是**分**。
+* orders：记录订单数据
+  * TODO
 
 
 
@@ -24,6 +56,6 @@ Collections：
 
 * 图片唯一ID：
   * 餐馆图片：餐馆唯一ID+点+后缀。比如彩色字节餐馆的图片ID是sxty_cszj01.png，具体后缀因图片格式而异，比如可以是png、jpeg、gif等。
-  * 菜单项图片：餐馆唯一ID+下划线+菜单项首字母小写+点+后缀。比如彩色字节餐馆的过油肉图片ID是sxty_cszj01_gyr.jpeg
+  * 菜单项图片：餐馆唯一ID+下划线+菜单项首字母小写+点+后缀。比如彩色字节餐馆的过油肉图片ID是sxty_cszj01_gyr.jpeg。
 * 餐馆唯一ID：省市拼音首字母小写+下划线+餐馆首字母小写+序号，序号主要为防止餐馆重名或方便后续扩展。比如山西太原彩色字节餐馆的ID是sxty_cszj01。
 * 菜单唯一ID：同餐馆唯一ID。比如山西太原彩色字节餐馆的菜单ID是sxty_cszj01。
