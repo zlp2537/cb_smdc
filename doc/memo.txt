@@ -23,9 +23,14 @@ https://mongoosejs.com/docs/schematypes.html#mixed
 
 
 week#1
-后台管理系统（admin）
-增删查改餐馆
-增删查改菜单
+后台管理系统
+  登陆页面
+    彩色字节管理员登陆后
+      添加餐馆管理员账号
+      编辑餐馆管理员账号（重制密码）
+    餐馆管理员登陆后
+      编辑菜单！
+
 
 
 
