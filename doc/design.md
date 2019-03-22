@@ -1,6 +1,7 @@
 # 设计
 
-以下内容假设“**彩色字节**”是山西太原的一家餐馆。
+* 以下内容假设“**彩色字节**”是山西太原的一家餐馆。
+* 为了简化系统，暂时不考虑大份、小份这种属性。比如打卤面大份20块，小份16块，按两个菜录入，分别为打卤面（大份）、打卤面（小份）。再比如可乐，按三个菜录入：大杯可乐、中杯可乐、小杯可乐。
 
 
 
@@ -15,6 +16,20 @@
   * 后台管理界面：
     * Web：Vuejs + Bootstrap ？
     * 微信小app：未来再开发
+
+
+
+## API
+
+
+
+| 功能     | 方法 | URL                                                    |
+| -------- | ---- | ------------------------------------------------------ |
+| 访问图片 | GET  | http://www.colourfulbyte.com/dc/image/sxty_cszj01_gyr.jpeg       |
+| 访问菜单 | GET  | http://www.colourfulbyte.com/dc/api/client/menu/sxty_cszj01/t01  |
+| 下单     | POST | http://www.colourfulbyte.com/dc/api/client/order/sxty_cszj01/t01 |
+
+
 
 
 
@@ -33,22 +48,30 @@ Collections：
 
 * restaurants：记录餐馆数据
   * id：餐馆唯一ID（后面解释ID规则）
-  * name：餐馆名字（中文名）
+  * name：餐馆名
   * pic_id：餐馆图片ID
 
 * menus：记录菜单数据
   * id：菜单唯一ID（后面解释ID规则）
   * groups：餐馆菜品分组，比如有热菜、凉菜、主食、甜点、饮料、酒水等。
     * id：分组ID，整数，菜单内唯一。比如热菜是1，凉菜是2，等等。
-    * name：分组名（中文）
+    * name：分组名
+  * options：选项，比如不辣、微辣、免香菜，等等
+    * id：选项ID
+    * name：选项名
   * items：菜单项目
     * id：菜的ID，整数，菜单内唯一
-    * name：菜名（中文）
+    * name：菜名
     * group_id：菜的分组ID，比如过油肉属于热菜，分组ID是1。
     * pic_id：菜的图片ID
     * price：菜的价格，整数，单位是**分**。
+    * option_ids：可选选项ID列表
 * orders：记录订单数据
-  * TODO
+  * id：
+  * items：
+    * id：菜ID
+    * count：份数，整数
+    * rermarks：备注（其他备注）
 
 
 
