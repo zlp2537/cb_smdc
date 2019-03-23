@@ -21,4 +21,3 @@
 ![login](images/login.png)
 
 主页面：http://www.colourfulbyte.com/dc/restaurant/index.html
-
